@@ -1,11 +1,16 @@
 # Kravspesifikasjon: Prosjektoppgave i Databaser
 ## Emne: Dobbelt Bokholderi — Datamodellering, SQL, Transaksjoner og NoSQL
 
-**Emne:** Databaser  
+**Emne:** Databaser 
+
 **Nivå:** Bachelor, 1. år
-**Arbeidsform:** Valgfritt: gruppe på 3 studenter, par (2 studenter) eller individuelt  
+
+**Arbeidsform:** Valgfritt: gruppe på 3 studenter, par (2 studenter) eller individuelt 
+
 **Omfang:** 4–6 uker 
+
 **Innlevering** I Github Classroom (oppgaven inngår i arbeidskravet)
+
 **Innleveringsfrist** søndag 3. Mai 2026
 
 ---
@@ -1325,7 +1330,7 @@ Følgende vil bli lagt vekt på i vurdering:
 
 ## B. Referanser
 
-[^1]: GnuCash Wiki. *SQL — GnuCash*. Tilgjengelig: https://wiki.gnucash.org/wiki/SQL
+[^1]: Wikipedia. *Summa de arithmetica*. Tilgjengelig: https://en.wikipedia.org/wiki/Summa_de_arithmetica
 
 [^2]: Wikipedia. *Dobbelt bokholderi*. Tilgjengelig: https://no.wikipedia.org/wiki/Dobbelt_bokholderi
 
