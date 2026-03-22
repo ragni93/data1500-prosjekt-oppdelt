@@ -21,7 +21,7 @@ Dobbelt bokholderi er et av de mest grunnleggende prinsippene i moderne regnskap
 
 Kjernen i dobbelt bokholderi er at enhver finansiell transaksjon registreres på **minst to kontoer** med like store beløp — ett beløp til debet og ett til kredit. Summen av alle debetposteringer skal alltid være lik summen av alle kreditposteringer, slik at regnskapet alltid er i balanse. Dette gjør systemet selvkontrollerende og gir en pålitelig revisjonsspor.
 
-Denne prosjektoppgaven tar et utgangspunkt i datamodellen til **GnuCash**, et åpen kildekode-regnskapsprogram som støtter PostgreSQL, MySQL og SQLite3. GnuCash implementerer dobbelt bokholderi for personlig regnskap. For å illustrere et bedriftsregnskap blir NS 4102[^6] introdusert og brukt som utgangspunkt i denne oppgaven.
+Denne prosjektoppgaven tar et utgangspunkt i datamodellen til **GnuCash**, et åpen kildekode-regnskapsprogram som støtter PostgreSQL, MySQL og SQLite3. GnuCash implementerer dobbelt bokholderi for personlig regnskap. For å illustrere et bedriftsregnskap blir NS 4102[^6] introdusert og brukt i denne oppgaven.
 
 ---
 
@@ -677,7 +677,7 @@ Her er noen punkter som kan hjelpe å komme i gang med mermaid diagrammet for re
 - Resten kan kartlegges basert på beskrivelsene av enitetene i dette kapittelet (kapittel 5). 
 - Eksempel på mermaid kode for forholdene som `Bøker`, `Kontoklasser` og `Kontoer` er involvert i. 
 ```bash
-# eksempel på 
+# Eksempel på mermaid kode
 BØKER ||--o{ KONTOER                 : "inneholder"
 BØKER ||--o{ TRANSAKSJONER           : "inneholder"
 BØKER ||--o{ BUDSJETTER              : "har"
@@ -708,7 +708,7 @@ Skriv et SQL-skript (`oppgave1.sql`) som oppretter følgende tabeller med korrek
 - `Transaksjoner`, `Posteringer`
 - `MVA_koder`, `MVA_linjer`
 
-Lag et diagramm i mermaid.live. 
+Lag et diagram i mermaid.live. 
 
 **Krav til skjemaet:**
 
@@ -825,7 +825,7 @@ Skriv et SQL-skript (`oppgave2.sql`) som implementerer alle åtte brukerscenario
 - Valutakurser: USD/NOK og SEK/NOK for relevante datoer.
 - Alle åtte kontoklasser med korrekte `type` og `normal_saldo`.
 - Kontoer for alle kontonumre som er brukt i scenarioene.
-- Én regnskapsperiode per termin (6 terminer for 2026).
+- Én regnskapsperiode per måned (12 regnskapsperioder for 2026).
 - Alle åtte transaksjonene med tilhørende posteringer.
 - MVA-koder for utgående (25%) og inngående (25%) MVA, samt tilhørende MVA-linjer.
 
@@ -833,13 +833,13 @@ Skriv et SQL-skript (`oppgave2.sql`) som implementerer alle åtte brukerscenario
 
 ```sql
 SELECT t.guid, t.beskrivelse, SUM(p.belop_teller::numeric / p.belop_nevner) AS saldo
-FROM Transaksjoner t
-JOIN Posteringer p ON p.transaksjon_guid = t.guid
+FROM "Transaksjoner" t
+JOIN "Posteringer" p ON p.transaksjon_guid = t.guid
 GROUP BY t.guid, t.beskrivelse
 HAVING ABS(SUM(p.belop_teller::numeric / p.belop_nevner)) > 0.001;
 ```
 
-#### Spesifikke krav til Oppgave 2
+#### Spesifikke krav til Oppgave 2 (dette skal gjennomgås på forelesninger)
 
 **`DO $$...$$`-blokk for Transaksjoner og Posteringer**
 
@@ -877,7 +877,7 @@ I scenario 7 er `2740 Oppgjørskonto MVA` utelatt fra posteringene. Scenarioteks
 
 ---
 
-### Oppgave 3: Hierarkisk Kontoplan med `WITH RECURSIVE` (obligatorisk)
+### Oppgave 3: Hierarkisk Kontoplan med `WITH RECURSIVE`
 
 #### Del A — Rekursiv traversering
 
@@ -901,7 +901,7 @@ Utvid spørringen fra Del A. Bruk en CTE (Common Table Expression) til å først
 
 ---
 
-### Oppgave 4: Ytelsesanalyse med `EXPLAIN ANALYZE` og `MATERIALIZED VIEW` (obligatorisk)
+### Oppgave 4: Ytelsesanalyse med `EXPLAIN ANALYZE` og `MATERIALIZED VIEW`
 
 #### Del A — Opprett et komplekst `VIEW`
 
@@ -942,7 +942,7 @@ Forklar i rapporten:
 
 ---
 
-### Oppgave 5: Flerdimensjonal Analyse med `ROLLUP` og `CUBE` (obligatorisk)
+### Oppgave 5: Flerdimensjonal Analyse med `ROLLUP` og `CUBE`
 
 #### Del A — Kostnadsanalyse med `ROLLUP`
 
@@ -969,7 +969,7 @@ Forklar forskjellen mellom `ROLLUP` og `CUBE` med utgangspunkt i disse to eksemp
 
 ---
 
-### Oppgave 6: Databaseadministrasjon og Tilgangskontroll (obligatorisk)
+### Oppgave 6: Databaseadministrasjon og Tilgangskontroll
 
 **Læringsmål:**
 
@@ -981,7 +981,7 @@ Forklar forskjellen mellom `ROLLUP` og `CUBE` med utgangspunkt i disse to eksemp
 
 **Scenario:**
 
-Norsk Konsult AS har vokst og trenger en mer robust tilgangskontroll til regnskapsdatabasen. Du har fått i oppgave, i rollen som DBA, å implementere en sikkerhetsmodell som skiller mellom ulike ansvarsområder.
+DATA1500 Konsult AS har vokst og trenger en mer robust tilgangskontroll til regnskapsdatabasen. Du har fått i oppgave, i rollen som DBA, å implementere en sikkerhetsmodell som skiller mellom ulike ansvarsområder.
 
 #### Del A: Opprett Roller og Brukere
 
@@ -1028,24 +1028,21 @@ Forklar i rapporten:
 
 ---
 
+**Oppgaver 7 - 11** belyser to viktige aspekter som spiller en avgjørende rolle i implementasjon av databasemodeller:
 
-## 7. Transaksjoner og NoSQL
+- For det første introduseres **dybde i SQL-database** gjennom obligatoriske oppgaver som dekker avansert transaksjonsbehandling, feilhåndtering og samtidighetskontroll. Disse temaene er avgjørende for å bygge systemer som er pålitelige nok til å håndtere finansielle data — der en feil kan bety at penger "forsvinner" fra systemet.
 
-### 7.1 Innledning
+- For det andre introduseres **bredde i arkitektur** gjennom en utvidelse som krever at studentene bygger en ekstern mikrotjeneste. Denne tjenesten integrerer en NoSQL-database med den eksisterende SQL-databasen og henter sanntidsdata fra åpne finansielle API-er. Formålet er å gi studentene praktisk erfaring med **polyglot persistens**, der ulike databaseteknologier brukes til det de er best egnet for.
 
-Den opprinnelige prosjektoppgaven etablerer en solid relasjonsdatabase for dobbelt bokholderi. Denne reviderte spesifikasjonen utvider prosjektet i to viktige retninger:
-
-For det første introduseres **dybde i SQL-databasen** gjennom obligatoriske oppgaver som dekker avansert transaksjonsbehandling, feilhåndtering og samtidighetskontroll. Disse temaene er avgjørende for å bygge systemer som er pålitelige nok til å håndtere finansielle data — der en feil kan bety at penger "forsvinner" fra systemet.
-
-For det andre introduseres **bredde i arkitektur** gjennom en utvidelse som krever at studentene bygger en ekstern mikrotjeneste. Denne tjenesten integrerer en NoSQL-database med den eksisterende SQL-databasen og henter sanntidsdata fra åpne finansielle API-er. Formålet er å gi studentene praktisk erfaring med **polyglot persistens**, der ulike databaseteknologier brukes til det de er best egnet for.
-
-### 7.2 Bakgrunn: Transaksjoner i Dobbelt Bokholderi
+**Bakgrunn: Transaksjoner i Dobbelt Bokholderi**
 
 I dobbelt bokholderi er en regnskapstransaksjon (f.eks. "betal leverandør 5000 kr") alltid en sammensatt operasjon: én rad settes inn i `Transaksjoner`-tabellen, og minst to rader settes inn i `Posteringer`-tabellen — én for debet og én for kredit. Summen av alle `belop_teller`-verdier i `Posteringer` for én transaksjon skal alltid være null.
 
 Denne sammensatte operasjonen er et klassisk eksempel på en situasjon der **atomisitet** er absolutt nødvendig. Hvis systemet krasjer etter at `Transaksjoner`-raden er satt inn, men før `Posteringer`-radene er skrevet, vil databasen inneholde en "halvferdig" transaksjon som bryter med det grunnleggende prinsippet i dobbelt bokholderi. Det er nettopp for å forhindre slike situasjoner at DBHS-er implementerer transaksjonsbehandling med ACID-egenskapene.
 
 > **ACID** er et akronym for **Atomicity** (atomisitet), **Consistency** (konsistens), **Isolation** (isolasjon) og **Durability** (varighet). Disse fire egenskapene garanterer at databasetransaksjoner behandles pålitelig.
+
+**OBS!** Disse temaene skal gjennomgås på forelesninger.
 
 ---
 
@@ -1088,7 +1085,7 @@ BEGIN;
 COMMIT;
 ```
 
-Det anbefales å bruke `DO`-blokk på måten (2).
+Det anbefales å bruke `DO`-blokk på måten (2.).
 
 
 #### Demonstrasjonskrav
@@ -1210,16 +1207,16 @@ Bruk databasesystemets innebygde funksjoner for å demonstrere at en `ROLLBACK` 
 ```sql
 BEGIN;
 
-INSERT INTO "Transaksjoner" (guid, ...) VALUES ('test-guid-123', ...);
-INSERT INTO "Posteringer" (guid, tx_guid, ...) VALUES ('split-guid-1', 'test-guid-123', ...);
+INSERT INTO "Transaksjoner" (guid, ...) VALUES (...);
+INSERT INTO "Posteringer" (guid, transaksjon_guid, ...) VALUES (...);
 
 -- Verifiser at dataene er synlige innenfor transaksjonen
-SELECT * FROM "Transaksjoner" WHERE guid = 'test-guid-123'; -- Skal returnere 1 rad
+SELECT * FROM "Transaksjoner" WHERE guid = ...; -- Skal returnere 1 rad
 
 ROLLBACK;
 
 -- Verifiser at dataene er borte etter ROLLBACK
-SELECT * FROM "Transaksjoner" WHERE guid = 'test-guid-123'; -- Skal returnere 0 rader
+SELECT * FROM "Transaksjoner" WHERE guid = ...; -- Skal returnere 0 rader
 ```
 
 ---
@@ -1228,11 +1225,11 @@ SELECT * FROM "Transaksjoner" WHERE guid = 'test-guid-123'; -- Skal returnere 0 
 
 **Mål:** Forstå, demonstrere og løse "tapt oppdatering" (lost update) — et klassisk samtidighetsproblem i flerbrukerdatabaser.
 
-**Læringsutbytte:** Studenten kan forklare les-beregn-skriv-syklusen, forstår behovet for låsing, og kan implementere korrekte løsninger.
+**Læringsutbytte:** Studenten kan forklare *les-beregn-skriv*-syklusen, forstår behovet for låsing, og kan implementere korrekte løsninger.
 
 #### Scenario: Dobbel Betaling
 
-To regnskapsmedarbeidere, Ane og Bjørn, jobber samtidig mot den samme bedriftskontoen (en konto av typen `BANK` i `Kontoer`-tabellen). Kontoen har en saldo på 10 000 kr, representert som summen av alle tilknyttede `Posteringer`.
+To regnskapsmedarbeidere, Ane og Bjørn, jobber samtidig mot den samme bedriftskontoen (en konto av typen `BANK` i `Kontoer`-tabellen). Hvis kontoen har en saldo på 10 000 kr (representert som summen av alle tilknyttede `Posteringer.belop_nevner`).
 
 -   **Ane (Prosess A):** Skal registrere en utbetaling på 3 000 kr.
 -   **Bjørn (Prosess B):** Skal registrere en innbetaling på 1 500 kr.
@@ -1243,17 +1240,76 @@ Korrekt sluttresultat: 10 000 − 3 000 + 1 500 = **8 500 kr**.
 
 *GnuCash/NS 4102-modellen* er immun mot tapt oppdatering slik den er designet, fordi at den aldri bruker `UPDATE SET saldo = ny_verdi`. Saldoen beregnes alltid som SUM("Posteringer".belop_teller). I Oppgave 7 skulle dere lage en løsning, som garanterte at oppdateringer av `Transaksjoner` og `Posteringer` blir alltid oppdatert eller angret innenfor en transaksjon. For å demonstrere ekte tapt oppdatering må man bruke en separat tabell med en oppdaterbar saldo-kolonne. 
 
-Dere skal bruke Python programmeringsspråk for å simulerer "samtidighet", dvs. at Ana og Bjørn kobler seg til databasen med to separate Psycopg2-koblinger (hvor Psycopg2 er en mye brukt adapter for Python programmeringsspråket; https://www.psycopg.org/), som da utføres i to separate *tråder* i Python (`threading` modulen). 
+Bruk Python programmeringsspråk for å simulerer "samtidighet", dvs. at Ane og Bjørn kobler seg til databasen med to separate Psycopg2-koblinger (hvor Psycopg2 er en mye brukt adapter for Python programmeringsspråket; https://www.psycopg.org/), som da utføres i to separate *tråder* i Python (`threading` modulen). 
 
-Ta utgangspunkt i Python programmet i filen ´oppgave9.py´ hvor funksjoner for alle operasjoner mot databasen og samtidighet som simulerer den usikre *les-beregn-skriv*-syklusen er implementert. 
+Ta utgangspunkt i Python programmet i filen ´oppgave9.py´ hvor funksjoner for alle operasjoner mot databasen og samtidighet som simulerer den usikre *les-beregn-skriv*-syklusen er implementert. Dette skal gjennomgås på forelesninger.
 
-Skriv python kode som genererer følgende output. 
+Skriv python kode som genererer følgende output:
 
-### Programmeringsoppgaver: Integrasjon med Ekstern Tjeneste og NoSQL
+```bash
+██████████████████████████████████████████████████████████████
+  DEMONSTRASJON: TAPT OPPDATERING (LOST UPDATE)
+  Oppgave 9 — Samtidige transaksjoner i PostgreSQL
+██████████████████████████████████████████████████████████████
+  Forsinkelse LES→SKRIV: 0.3s  |  Ane: +3,000 kr  |  Bjørn: +1,500 kr
 
-#### Relevante Eksterne API-er
+══════════════════════════════════════════════════════════════
+  SCENARIO A: INSERT-basert modell (GnuCash/NS 4102)
+  Begge tråder leser samme saldo, men skriver uavhengige INSERT-rader.
+  Resultat: INGEN tapt oppdatering — INSERT er immunt by design.
+──────────────────────────────────────────────────────────────
+  Saldo FØR: 248,500 kr  |  Forventet: 253,000 kr
+──────────────────────────────────────────────────────────────
+  [Bjørn ] LES: saldo = 248,500 kr
+  [Ane   ] LES: saldo = 248,500 kr
+  [Bjørn ] COMMIT: ny saldo = 253,000 kr  (+1,500 kr)
+  [Ane   ] COMMIT: ny saldo = 253,000 kr  (+3,000 kr)
+──────────────────────────────────────────────────────────────
+  Saldo ETTER: 253,000 kr  |  Forventet: 253,000 kr  |  ✓ Korrekt
 
-Det finnes flere relevante tjenester som man kan utforske. 
+══════════════════════════════════════════════════════════════
+  SCENARIO B1: UPDATE-basert — USIKKER (anti-mønster)
+  Begge tråder leser SAMME saldo, beregner ny verdi og
+  overskriver hverandre med UPDATE. Den siste vinner.
+──────────────────────────────────────────────────────────────
+  Saldo FØR: 248,500 kr  |  Forventet: 253,000 kr
+──────────────────────────────────────────────────────────────
+  [Ane   ] LES: saldo = 248,500 kr
+  [Bjørn ] LES: saldo = 248,500 kr
+  [Ane   ] COMMIT: satte saldo = 251,500 kr  (lest 248,500 + 3,000)  |  faktisk nå: 250,000 kr
+  [Bjørn ] COMMIT: satte saldo = 250,000 kr  (lest 248,500 + 1,500)  |  faktisk nå: 250,000 kr
+──────────────────────────────────────────────────────────────
+  Saldo ETTER: 250,000 kr  |  Forventet: 253,000 kr  |  ⚠️  TAPT OPPDATERING: 3,000 kr gikk tapt!
+
+══════════════════════════════════════════════════════════════
+  SCENARIO B2: UPDATE-basert — SIKKER (SELECT FOR UPDATE)
+  Den første tråden låser raden. Den andre venter til låsen frigis.
+  Ingen Barrier nødvendig — låsen er synkroniseringsmekanismen.
+──────────────────────────────────────────────────────────────
+  Saldo FØR: 248,500 kr  |  Forventet: 253,000 kr
+──────────────────────────────────────────────────────────────
+  [Bjørn ] LES+LÅS: saldo = 248,500 kr
+  [Ane   ] LES+LÅS: saldo = 250,000 kr
+  [Bjørn ] COMMIT+FRIGJØR LÅS: saldo = 250,000 kr  (lest 248,500 + 1,500)
+  [Ane   ] COMMIT+FRIGJØR LÅS: saldo = 253,000 kr  (lest 250,000 + 3,000)
+──────────────────────────────────────────────────────────────
+  Saldo ETTER: 253,000 kr  |  Forventet: 253,000 kr  |  ✓ Korrekt
+
+══════════════════════════════════════════════════════════════
+  SAMMENDRAG
+──────────────────────────────────────────────────────────────
+  Scenario                                              Avvik
+  ──────────────────────────────────────────────── ──────────
+  A:  INSERT-basert (GnuCash/NS 4102) — ingen låsing     0 kr ✓
+  B1: UPDATE-basert — USIKKER (les-beregn-skriv)    -3,000 kr
+  B2: UPDATE-basert — SIKKER  (SELECT FOR UPDATE)      0 kr ✓
+══════════════════════════════════════════════════════════════
+``` 
+---
+
+**Programmeringsoppgaver: Integrasjon med Ekstern Tjeneste og NoSQL**
+
+Det finnes flere relevante API-tjenester som man kan utforske. 
 
 | Tjeneste | Datatype | Bruksområde i GnuCash-modellen | Fordeler for prosjektet |
 |---|---|---|---|
@@ -1265,7 +1321,7 @@ Det finnes flere relevante tjenester som man kan utforske.
 
 **Norges Bank API** og **Alpha Vantage** skal brukes i oppgaveløsningene.
 
-#### Arkitektur for oppgaver 10 og 11
+**Arkitektur for oppgaver 10 og 11**
 
 Studentene skal implementere en frittstående tjeneste (f.eks. et Python-skript) som:
 
@@ -1275,7 +1331,9 @@ Studentene skal implementere en frittstående tjeneste (f.eks. et Python-skript)
 
 Det siste punktet er en bevisst kobling til transaksjonsoppgavene: selv den eksterne tjenesten må sikre at oppdateringer av `Verdipapirer` og `Kurser` er atomiske.
 
-#### Oppgave 10: Sanntids Valutakurs-Cache med Redis
+---
+
+### Oppgave 10: Sanntids Valutakurs-Cache med Redis
 
 **Mål:** Implementere en effektiv cache-mekanisme for å redusere antall kall mot et eksternt API.
 
@@ -1294,7 +1352,7 @@ Tjenesten skal implementere følgende cache-logikk:
 - Skriv et skript som simulerer 10 påfølgende kall for samme valutapar og logger om hvert kall resulterte i Cache Hit eller Cache Miss.
 - Diskuter i rapporten: Hva er konsekvensen for datakonsistens dersom Redis-cachen inneholder en foreldet kurs og en bruker registrerer en transaksjon basert på den? Hvordan kan dette håndteres?
 
-#### Oppgave 11: Staging av Finansielle Dokumenter med MongoDB
+### Oppgave 11: Staging av Finansielle Dokumenter med MongoDB
 
 **Mål:** Bruke en dokumentdatabase som et mellomlager for komplekse, semi-strukturerte API-responser.
 
@@ -1323,7 +1381,9 @@ Følgende vil bli lagt vekt på i vurdering:
 - Spørringene gir korrekte resultater.
 - Det er gitt en klar forklaring av designvalg. 
 - En forståelse av NULL-verdier og treverdilogikken i forbindelse med datamodellen for dobbel bokholderi er vist. 
+- En god forståelse av transaksjoner-
 - En kjørbar løsning i Python er presentert for oppgaver 10 og 11 basert på en start-kode, som vil bli gjennomgått på forelesninger.
+- En forståelse av distribuerte databaser (ved bruke API-er) og hvilke typiske scenarioer kan implementeres ved hjelp av NoSQL databasehåndteringssystemer.
 
 
 ---
