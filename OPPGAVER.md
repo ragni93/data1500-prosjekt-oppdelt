@@ -13,6 +13,8 @@
 
 **Innleveringsfrist** søndag 3. Mai 2026
 
+**Innleveringsformat** Det er 12 oppgaver i prosjektet og for hver oppgave skal det leveres inn SQL- eller Python-kode. Alle innleveringene skal skje i mappen "besvarelse". Alle tekstbesvarelser skal skrives i en fil RAPPORT.md. 
+
 ---
 
 ## 1. Innledning og faglig kontekst
@@ -692,7 +694,7 @@ KONTOER      ||--o{ KONTO     : "er overordnet" # for å implementere hierarki a
 KONTOER      }o--|| VALUTAER  : "denominert i"
 KONTOER      }o--o| MVA_KODER : "bruker"
 POSTERINGER  }o--|| KONTOER   : "berører"
-LOT.         }o--|| KONTOER   : "tilhører"
+LOT          }o--|| KONTOER   : "tilhører"
 ```
 
 
@@ -700,7 +702,7 @@ LOT.         }o--|| KONTOER   : "tilhører"
 
 ### Oppgave 1: Implementasjon av datamodellen og mermaid-diagrammet
 
-Skriv et SQL-skript (`oppgave1.sql`) som oppretter følgende tabeller med korrekte datatyper, primærnøkler og fremmednøkler i PostgreSQL:
+Skriv et SQL-skript (`oppgave1.sql` legges i mappen `besvarelse/test-scripts`) som oppretter følgende tabeller med korrekte datatyper, primærnøkler og fremmednøkler i PostgreSQL:
 
 - `Bøker`, `Valutaer`, `Valutakurser`
 - `Kontoklasser`, `Kontoer`
@@ -708,7 +710,7 @@ Skriv et SQL-skript (`oppgave1.sql`) som oppretter følgende tabeller med korrek
 - `Transaksjoner`, `Posteringer`
 - `MVA_koder`, `MVA_linjer`
 
-Lag et diagram i mermaid.live. 
+Lag et diagram i mermaid.live. Skriv mermaid-koden i filen RAPPORT.md.
 
 **Krav til skjemaet:**
 
@@ -743,8 +745,7 @@ Lag et diagram i mermaid.live.
 **Kommentarer i databaseskjema** 
 
 - Bruk `COMMENT ON TABLE ... IS` for å legge inn kommentarer på en tabell (entitet) og `COMMENT ON COLUMN ... IS` for å legge inn kommentarer på en kolonne (attributt).
-- Se eksempel for opprettelse av tabellen `Kontoer` (se kravspesifikasjon for alle tabellene i  :
-
+- Se eksempel for opprettelse av tabellen `Kontoer` (se kravspesifikasjon for alle tabellene i modellen i Oppgave 5):
 
 ```sql 
 CREATE TABLE "Kontoer" (
@@ -819,7 +820,7 @@ Access method: heap
 
 ### Oppgave 2: Populering med testdata
 
-Skriv et SQL-skript (`oppgave2.sql`) som implementerer alle åtte brukerscenarioene fra kapittel 4. Dataene skal inkludere:
+Skriv et SQL-skript (`oppgave2.sql` legges i mappen `besvarelse/test-scripts`) som implementerer alle åtte brukerscenarioene fra kapittel 4. Dataene skal inkludere:
 
 - Valutaer: NOK, USD, SEK.
 - Valutakurser: USD/NOK og SEK/NOK for relevante datoer.
@@ -965,7 +966,7 @@ Resultatet skal inneholde:
 - Subtotal per kode på tvers av type (der `type IS NULL`).
 - Totalsum for all MVA (der begge er `NULL`).
 
-Forklar forskjellen mellom `ROLLUP` og `CUBE` med utgangspunkt i disse to eksemplene.
+Forklar i rapporten forskjellen mellom `ROLLUP` og `CUBE` med utgangspunkt i disse to eksemplene.
 
 ---
 
@@ -1372,6 +1373,10 @@ Tjenesten skal implementere følgende ETL-logikk (Extract, Transform, Load):
 
 ---
 
+
+### Oppgave 12: diskusjon om eget læringsutbytte
+
+Diskuter i rapporten din egen læringsutbytte fra dette prosjektet i forhold til læringsutbytte i DATA1500 (https://student.oslomet.no/studier/-/studieinfo/emne/DATA1500/2026/H%C3%98ST). 
 
 ## A. Vurdering
 
