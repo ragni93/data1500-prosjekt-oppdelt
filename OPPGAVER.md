@@ -13,7 +13,7 @@
 
 **Innleveringsfrist** søndag 3. Mai 2026 (absolutt)
 
-**Innleveringsformat** Det er 12 oppgaver i prosjektet og for hver oppgave (unntatt det oppgave 12) skal det leveres inn enten SQL- eller Python-kode. Alle innleveringene skal skje i mappen "besvarelse". Alle tekstbesvarelser skal skrives i en fil RAPPORT.md. Se README.md i hovedmappen for mer detaljert om hva skal leveres hvor.
+**Innleveringsformat** Det er 12 oppgaver i prosjektet og for hver oppgave (unntatt oppgave 12) skal det leveres inn enten SQL- eller Python-kode. Alle innleveringene skal skje i mappen "besvarelse". Alle tekstbesvarelser skal skrives i en fil RAPPORT.md. Se README.md i hovedmappen for mer detaljert om hva skal leveres hvor.
 
 ---
 
