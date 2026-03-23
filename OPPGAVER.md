@@ -342,6 +342,8 @@ I tillegg legge inn en betingelse for at `fra_valuta_guid` er ikke lik `til_valu
 
 ---
 
+### 5.2 NS 4102-kontostruktur
+
 #### Kontoklasser
 
 En oppslagstabell som definerer de åtte hovedklassene i Norsk Standard Kontoplan (NS 4102).
@@ -393,6 +395,8 @@ ON DELETE RESTRICT;
 `ON DELETE RESTRICT` tolkes som at raden i `Kontoer` kan ikke slettes, hvis `Bøker.rot_konto_guid` peker på (har lik verdi i) `Kontoer.guid`. For å unngå at det pekes på fra bøker til kontoer på en konto som ikke lenger eksisterer (er slettet).
 
 ---
+
+### 5.3 Transaksjoner og posteringer
 
 #### Transaksjoner
 
@@ -570,6 +574,8 @@ Maler for gjentakende transaksjoner som husleie, lønn eller faste avdrag.
 
 ---
 
+### 5.4 Forretningsdel
+
 #### Kunder
 
 Register over virksomhetens kunder.
@@ -590,7 +596,7 @@ Register over virksomhetens kunder.
 
 ---
 
-#### Leverandører
+#### Leverandører 
 
 Register over virksomhetens leverandører.
 
@@ -745,7 +751,7 @@ Lag et diagram i mermaid.live. Skriv mermaid-koden i filen RAPPORT.md.
 **Kommentarer i databaseskjema** 
 
 - Bruk `COMMENT ON TABLE ... IS` for å legge inn kommentarer på en tabell (entitet) og `COMMENT ON COLUMN ... IS` for å legge inn kommentarer på en kolonne (attributt).
-- Se eksempel for opprettelse av tabellen `Kontoer` (se kravspesifikasjon for alle tabellene i modellen i Oppgave 5):
+- Se eksempel for opprettelse av tabellen `Kontoer` (se kravspesifikasjon for alle tabellene i modellen i kapittel 5):
 
 ```sql 
 CREATE TABLE "Kontoer" (
@@ -1328,7 +1334,7 @@ Studentene skal implementere en frittstående tjeneste (f.eks. et Python-skript)
 
 1.  Kommuniserer med det valgte eksterne API-et.
 2.  Bruker en NoSQL-database for mellomlagring eller staging av rådata.
-3.  Oppdaterer den sentrale SQL-databasen med prosesserte data, **alltid innenfor en SQL-transaksjon** (jf. Oppgave 5).
+3.  Oppdaterer den sentrale SQL-databasen med prosesserte data, **alltid innenfor en SQL-transaksjon** (jf. Oppgaver 7-9).
 
 Det siste punktet er en bevisst kobling til transaksjonsoppgavene: selv den eksterne tjenesten må sikre at oppdateringer av `Verdipapirer` og `Kurser` er atomiske.
 
