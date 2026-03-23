@@ -55,7 +55,7 @@
 
 ## Oppgave 12
 
-... skriv din refleksjon rundet læringsutbytte i forhold til læringsmål i DATA15000 ... 
+... skriv din refleksjon rundet læringsutbytte i forhold til planlagt læringsutbytte  i DATA1500 ... 
 
 
 SLUTT.
