@@ -19,15 +19,15 @@ For å demonstrere tapt oppdatering trenger vi implementere parallellitet:
 RACE CONDITION-MØNSTERET (Les-Beregn-Skriv):
 ---------------------------------------------
 Tid  Tråd A (Ane)                    Tråd B (Bjørn)
- 1   LES: saldo = 24 850 000 kr
- 2                                   LES: saldo = 24 850 000 kr   ← SAMME verdi!
+ 1   LES: saldo = 248 500 kr
+ 2                                   LES: saldo = 248 500 kr   ← SAMME verdi!
  3   [barriere.wait() — begge klare]
- 4   BEREGN: 10 000 + 3 000 = 13 000
- 5                                   BEREGN: 10 000 + 1 500 = 11 500
+ 4   BEREGN: 248 500 + 3 000 = 251 500
+ 5                                   BEREGN: 248 500 + 1 500 = 250 000
  6   SKRIV: INSERT postering +3 000
  7                                   SKRIV: INSERT postering +1 500
- 8   COMMIT → saldo = 13 000
- 9                                   COMMIT → saldo = 14 500
+ 8   COMMIT → saldo = 251 500
+ 9                                   COMMIT → saldo = 251 500
 
 I dette tilfellet er det INGEN tapt oppdatering fordi GnuCash-modellen
 bruker INSERT-basert regnskap: saldoen beregnes alltid som SUM(posteringer),

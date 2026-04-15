@@ -18,8 +18,8 @@ BØKER ||--o{ KUNDER                  : "har"
 BØKER ||--o{ LEVERANDORER            : "har"
 BØKER ||--o{ FAKTURAER               : "inneholder"
 
-KONTOKLASSER ||--o{ KONTO     : "klassifiserer"
-KONTOER      ||--o{ KONTO     : "er overordnet" # for å implementere hierarki av kontoer
+KONTOKLASSER ||--o{ KONTOER     : "klassifiserer"
+KONTOER      ||--o{ KONTOER     : "er overordnet" # for å implementere hierarki av kontoer
 KONTOER      }o--|| VALUTAER  : "denominert i"
 KONTOER      }o--o| MVA_KODER : "bruker"
 POSTERINGER  }o--|| KONTOER   : "berører"

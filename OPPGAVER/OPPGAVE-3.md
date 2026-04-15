@@ -16,7 +16,7 @@
 
 #### Del B: Aggregering med `GROUP BY`
 
-**B.1: B.4: Antall posteringer per transaksjon** Skriv en spørring som viser bilagsnummer, beskrivelse og bilagsdato for hver transaksjon, sammen med antall posteringer den inneholder. Sorter etter dato.
+**B.1: Antall posteringer per transaksjon** Skriv en spørring som viser bilagsnummer, beskrivelse og bilagsdato for hver transaksjon, sammen med antall posteringer den inneholder. Sorter etter dato.
 
 **B.2: Saldo per konto** Skriv en spørring som beregner og viser den totale saldoen i kroner for hver konto som har posteringer. Vis kontonummer, navn og saldo. Sorter etter kontonummer.
 
