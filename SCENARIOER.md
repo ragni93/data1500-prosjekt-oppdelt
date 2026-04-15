@@ -1,4 +1,9 @@
 
+## 4. Brukerscenarioer (NS 4102)
+
+Følgende scenarioer illustrerer hvordan en liten konsulentbedrift, **DATA1500 Konsult AS**, tar i bruk dobbelt bokholderi fra oppstart, med kontoer fra Norsk Standard Kontoplan (NS 4102). Alle kontonumre er i henhold til NS 4102, og alle beløp er i norske kroner (NOK) med mindre annet er angitt. Scenarioene er utformet slik at de dekker alle åtte kontoklassene og de viktigste funksjonene i den norske datamodellen.
+
+
 ### Scenario 1: Stiftelse av selskapet — innskudd av aksjekapital
 
 **Hendelse:** Eieren skyter inn 200 000 kr i aksjekapital ved stiftelse av DATA1500 Konsult AS. Pengene settes inn på bedriftens bankkonto.
