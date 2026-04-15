@@ -31,9 +31,7 @@ Den tradisjonelle måten å visualisere dobbelt bokholderi på er gjennom **T-ko
 
 ---
 
-## 4. Brukerscenarioer (NS 4102)
 
-Følgende scenarioer illustrerer hvordan en liten konsulentbedrift, **DATA1500 Konsult AS**, tar i bruk dobbelt bokholderi fra oppstart, med kontoer fra Norsk Standard Kontoplan (NS 4102). Alle kontonumre er i henhold til NS 4102, og alle beløp er i norske kroner (NOK) med mindre annet er angitt. Scenarioene er utformet slik at de dekker alle åtte kontoklassene og de viktigste funksjonene i den norske datamodellen.
 
 **Sentrale begrep**
 
