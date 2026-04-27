@@ -1,3 +1,20 @@
+**Oppgaver 7 - 11** belyser to viktige aspekter som spiller en avgjørende rolle i implementasjon av databasemodeller:
+
+- For det første introduseres **dybde i SQL-database** gjennom obligatoriske oppgaver som dekker avansert transaksjonsbehandling, feilhåndtering og samtidighetskontroll. Disse temaene er avgjørende for å bygge systemer som er pålitelige nok til å håndtere finansielle data — der en feil kan bety at penger "forsvinner" fra systemet.
+
+- For det andre introduseres **bredde i arkitektur** gjennom en utvidelse som krever at studentene bygger en ekstern mikrotjeneste. Denne tjenesten integrerer en NoSQL-database med den eksisterende SQL-databasen og henter sanntidsdata fra åpne finansielle API-er. Formålet er å gi studentene praktisk erfaring med **polyglot persistens**, der ulike databaseteknologier brukes til det de er best egnet for.
+
+**Bakgrunn: Transaksjoner i Dobbelt Bokholderi**
+
+I dobbelt bokholderi er en regnskapstransaksjon (f.eks. "betal leverandør 5000 kr") alltid en sammensatt operasjon: én rad settes inn i `Transaksjoner`-tabellen, og minst to rader settes inn i `Posteringer`-tabellen — én for debet og én for kredit. Summen av alle `belop_teller`-verdier i `Posteringer` for én transaksjon skal alltid være null.
+
+Denne sammensatte operasjonen er et klassisk eksempel på en situasjon der **atomisitet** er absolutt nødvendig. Hvis systemet krasjer etter at `Transaksjoner`-raden er satt inn, men før `Posteringer`-radene er skrevet, vil databasen inneholde en "halvferdig" transaksjon som bryter med det grunnleggende prinsippet i dobbelt bokholderi. Det er nettopp for å forhindre slike situasjoner at DBHS-er implementerer transaksjonsbehandling med ACID-egenskapene.
+
+> **ACID** er et akronym for **Atomicity** (atomisitet), **Consistency** (konsistens), **Isolation** (isolasjon) og **Durability** (varighet). Disse fire egenskapene garanterer at databasetransaksjoner behandles pålitelig.
+
+**OBS!** Disse temaene skal gjennomgås på forelesninger.
+
+
 ### Oppgave 7: Atomisk Regnskapspostering (K10.1, K10.2)
 
 <span style="color:blue">**Hvordan besvare: Kode leveres i besvarelse/oppgave1-9/test-scripts. OG/eller (?) RAPPORT.md**</span>
